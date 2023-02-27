@@ -2,6 +2,8 @@ import 'package:ecommerce_project/utilitys/Appcolors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'Home_screen.dart';
+
 class MainBottomNavigationBar extends StatefulWidget {
   const MainBottomNavigationBar({Key? key}) : super(key: key);
 
@@ -11,10 +13,17 @@ class MainBottomNavigationBar extends StatefulWidget {
 
 class _MainBottomNavigationBarState extends State<MainBottomNavigationBar> {
   int selectedIndex=0;
+  final List<Widget> screen= const [
+          HomeScreen(),
+        HomeScreen(),
+        HomeScreen(),
+        HomeScreen(),
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      body: screen[selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: selectedIndex,
         selectedItemColor: AppColors.PrimaryColor,
