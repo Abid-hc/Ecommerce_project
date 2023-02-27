@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import '../utilitys/widgets/AppElevatedButton.dart';
 import '../utilitys/widgets/AppWidgets.dart';
+import 'main_bottom_navigation_bar.dart';
 
 class CompleteProfileScreen extends StatefulWidget {
   const CompleteProfileScreen({Key? key}) : super(key: key);
@@ -61,11 +62,9 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
 
                 AppElevatedButton(
                   ontap: (){
-                    Navigator.push(context, MaterialPageRoute(builder:
-                        (context)=>
-                            CompleteProfileScreen()
-                    )
-                    );
+                    Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder:
+                        (context)=>MainBottomNavigationBar()),
+                            (route) => false);
                   },
                   text: "Complete",
                 ),
