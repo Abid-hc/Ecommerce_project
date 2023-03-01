@@ -1,10 +1,14 @@
+import 'package:ecommerce_project/getx/bottom_navigation_controler.dart';
+import 'package:ecommerce_project/screens/catagory_screen.dart';
 import 'package:ecommerce_project/utilitys/Appcolors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
+import 'package:get/get.dart';
 import 'Home_screen.dart';
+import 'carts_screen.dart';
 
 class MainBottomNavigationBar extends StatefulWidget {
+
   const MainBottomNavigationBar({Key? key}) : super(key: key);
 
   @override
@@ -12,35 +16,42 @@ class MainBottomNavigationBar extends StatefulWidget {
 }
 
 class _MainBottomNavigationBarState extends State<MainBottomNavigationBar> {
-  int selectedIndex=0;
+  BottomNavitaionControler controler = Get.put(BottomNavitaionControler());
+
   final List<Widget> screen= const [
           HomeScreen(),
-        HomeScreen(),
-        HomeScreen(),
-        HomeScreen(),
+          ProductCatagoryScreen(),
+          CartsScreen(),
+          HomeScreen(),
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: screen[selectedIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: selectedIndex,
-        selectedItemColor: AppColors.PrimaryColor,
-        unselectedItemColor: Colors.grey,
-        showUnselectedLabels: true,
-        onTap: (index){
-          selectedIndex=index;
-          setState(() {
+      body: GetBuilder<BottomNavitaionControler>(
 
-          });
-        },
-        items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home),label:"Home" ),
-          BottomNavigationBarItem(icon: Icon(Icons.category),label:"Category" ),
-          BottomNavigationBarItem(icon: Icon(Icons.shopping_cart),label:"Cart" ),
-          BottomNavigationBarItem(icon: Icon(Icons.card_giftcard),label:"Wish" ),
-        ],
+        builder: (_) {
+          return screen[controler.setectedIndex];
+        }
+      ),
+      bottomNavigationBar: GetBuilder<BottomNavitaionControler>(
+          builder: (_) {
+          return BottomNavigationBar(
+            currentIndex:controler.setectedIndex ,
+            selectedItemColor: AppColors.PrimaryColor,
+            unselectedItemColor: Colors.grey,
+            showUnselectedLabels: true,
+            onTap: (index){
+               controler.changeIndex(index);
+            },
+            items: const [
+              BottomNavigationBarItem(icon: Icon(Icons.home),label:"Home" ),
+              BottomNavigationBarItem(icon: Icon(Icons.category),label:"Category" ),
+              BottomNavigationBarItem(icon: Icon(Icons.shopping_cart),label:"Cart" ),
+              BottomNavigationBarItem(icon: Icon(Icons.card_giftcard),label:"Wish" ),
+            ],
+          );
+        }
       ),
     );
   }
