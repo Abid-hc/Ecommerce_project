@@ -1,8 +1,9 @@
+import 'package:ecommerce_project/utilitys/widgets/AppElevatedButton.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:number_inc_dec/number_inc_dec.dart';
-
 import '../getx/bottom_navigation_controler.dart';
+import '../utilitys/Appcolors.dart';
+import '../utilitys/widgets/carts/carts_product_item.dart';
 
 class CartsScreen extends StatefulWidget {
   const CartsScreen({Key? key}) : super(key: key);
@@ -13,6 +14,7 @@ class CartsScreen extends StatefulWidget {
 
 class _CartsScreenState extends State<CartsScreen> {
   BottomNavitaionControler controler = Get.put(BottomNavitaionControler());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,81 +35,60 @@ class _CartsScreenState extends State<CartsScreen> {
       ),
       body: Column(
         children: [
-          Card(
-            margin: const EdgeInsets.all(16),
-            elevation: 2,
+          Expanded(
+            child: ListView.builder(
+                itemCount: 5,
+                itemBuilder: (context,index) {
+              return const CartProductItem();
+            }),
+          ),
+          Container(
+            padding: EdgeInsets.all(16),
+            decoration: BoxDecoration(
+              color: AppColors.PrimaryColor.withOpacity(0.20),
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(16),
+                topRight: Radius.circular(16),
+
+              )
+            ),
             child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Image.asset("assets/images/nike.png",width: 90,height:70 ,fit: BoxFit.cover,),
-                Expanded(
-                  child:
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Column(
-                      children: [
-                        Row(
-                          children: [
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-
-                                Text("Product Name",style: TextStyle(
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 15,
-                                  letterSpacing: 0.4,
-
-                                ),),
-                                Row(
-                                  children: [
-                                    Text("Color:Black",style: TextStyle(
-                                      fontSize: 13,
-                                    ),),
-                                    const SizedBox(width: 12,),
-                                    Text("Size:XL",style: TextStyle(
-                                      fontSize: 13,
-                                    ),),
-                                  ],
-                                ),
-
-
-                              ],
-
-                            ),
-                            Spacer(),
-                            IconButton(onPressed: (){}, icon: Icon(Icons.delete_outline,color: Colors.red,))
-                          ],
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text("\$100"),
-
-                            SizedBox(
-                              width: 90,
-                              height: 30,
-
-                              child:NumberInputWithIncrementDecrement(
-                                controller: TextEditingController(),
-                                buttonArrangement: ButtonArrangement.incLeftDecRight,
-                                incIcon: Icons.add,
-                                decIcon:Icons.remove ,
-                                min: 0,
-                                max: 3,
-                              ),
-                            )
-
-
-                          ],
-                        )
-                      ],
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text("Total price",style:TextStyle(
+                      color: Colors.black54,
+                      fontSize: 12
+                    ) ,
                     ),
-                  ),
-                )
+                    Text("\$12000",style:TextStyle(
+                        color: AppColors.PrimaryColor,
+                        fontSize: 15,
+                        fontWeight: FontWeight.w600
+                    ) ,
+                    ),
+
+
+                  ],
+                ),
+
+                SizedBox(
+                  width: 100,
+                  child: AppElevatedButton(text: "Check out", ontap: (){}),
+
+                ),
+
               ],
             ),
           )
         ],
-      ),
+      )
     );
   }
 }
+
+
+
+
