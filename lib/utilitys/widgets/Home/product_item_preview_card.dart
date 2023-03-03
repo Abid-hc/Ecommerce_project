@@ -31,6 +31,7 @@ class ProductItemPreviewCard extends StatelessWidget {
             ),),
           const SizedBox(height: 8,),
           Row(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text('\$100',style: TextStyle(
                   color: AppColors.PrimaryColor,
