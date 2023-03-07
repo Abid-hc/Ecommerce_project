@@ -1,7 +1,9 @@
 import 'package:ecommerce_project/utilitys/widgets/inc_dce_from_filed.dart';
 import 'package:flutter/material.dart';
 import '../utilitys/Appcolors.dart';
+import '../utilitys/widgets/AppElevatedButton.dart';
 import '../utilitys/widgets/product_details/product_details_slider.dart';
+import 'create_review_screen.dart';
 
 class ProductDetailsScreen extends StatefulWidget {
   const ProductDetailsScreen({Key? key}) : super(key: key);
@@ -25,116 +27,171 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
       ),
       body: Column(
         children: [
-          ProductImageSlider(),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: const [
-                    Expanded(
-                        child: Text( "Nike Sports shoes A4517",
-                          maxLines: 2,
-                          style: TextStyle(
-                              fontSize: 18,fontWeight:FontWeight.w600 ,color: Colors.black),
-                        )
-                    ),
-                    SizedBox(
-                      width: 90,
-                        child: IncDecTextFromFiled()
-                    ),
-
-                  ],
-                ),
-                Row(
-                  children: [
-                    Icon(Icons.star,color: Colors.amberAccent,),
-                    Text("4.5"),
-                    const SizedBox(width: 8,),
-                    TextButton(onPressed: (){}, child: Text("Reviews",style: TextStyle(
-                      color:  AppColors.PrimaryColor
-                    ),)),
-                    Container(
-                      padding:EdgeInsets.all(6) ,
-                      decoration: BoxDecoration(
-                        color: AppColors.PrimaryColor,
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      child: Icon(Icons.favorite_border,color: Colors.white,size: 14,),
-                    )
-
-                  ],
-                ),
-                const SizedBox(height: 16,),
-                Text("Color",style: TextStyle(
-                  color: Colors.black54,
-                  fontWeight: FontWeight.w500,
-                  fontSize: 16
-                )
-                  ,),
-                const SizedBox(height: 8,),
-                SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                    children: [
-                      for( int i=0;i<5;i++)
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: CircleAvatar(
-                          radius: 16,
-                          backgroundColor: AppColors.PrimaryColor,
-                          child: Icon(Icons.check),
-                      ),
-                        )
-
-                    ],
-                  ),
-                ),
-                const SizedBox(height: 16,),
-                Text("Size",style: TextStyle(
-                    color: Colors.black54,
-                    fontWeight: FontWeight.w500,
-                    fontSize: 16
-                )
-                  ,),
-                const SizedBox(height: 8,),
-                SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                    children: [
-                      for( int i=0;i<5;i++)
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Container(
-                            padding: EdgeInsets.all(8),
-                            decoration: BoxDecoration(
-                              border: Border.all(color: Colors.black54,width: 2),
-                              borderRadius: BorderRadius.circular(50)
+          Expanded(
+            child: SingleChildScrollView(
+              
+              child: Column(
+                children: [
+                  ProductImageSlider(),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: const [
+                            Expanded(
+                                child: Text( "Nike Sports shoes A4517",
+                                  maxLines: 2,
+                                  style: TextStyle(
+                                      fontSize: 18,fontWeight:FontWeight.w600 ,color: Colors.black),
+                                )
                             ),
-                            child: Text("XL"),
-                          ),
-                        )
+                            SizedBox(
+                              width: 90,
+                                child: IncDecTextFromFiled()
+                            ),
 
-                    ],
-                  ),
-                ),
-                Text("Description",style: TextStyle(
-                    color: Colors.black54,
-                    fontWeight: FontWeight.w500,
-                    fontSize: 16
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Icon(Icons.star,color: Colors.amberAccent,),
+                            Text("4.5"),
+                            const SizedBox(width: 8,),
+                            TextButton(onPressed: (){
+                              Navigator.push(context, MaterialPageRoute(builder: (context)=>CreateReviewScreen()));
+                            }, child: Text("Reviews",style: TextStyle(
+                              color:  AppColors.PrimaryColor
+                            ),)),
+                            Container(
+                              padding:EdgeInsets.all(6) ,
+                              decoration: BoxDecoration(
+                                color: AppColors.PrimaryColor,
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              child: Icon(Icons.favorite_border,color: Colors.white,size: 14,),
+                            )
+
+                          ],
+                        ),
+                        const SizedBox(height: 16,),
+                        Text("Color",style: TextStyle(
+                          color: Colors.black54,
+                          fontWeight: FontWeight.w500,
+                          fontSize: 16
+                        )
+                          ,),
+                        const SizedBox(height: 8,),
+                        SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: Row(
+                            children: [
+                              for( int i=0;i<5;i++)
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: CircleAvatar(
+                                  radius: 16,
+                                  backgroundColor: AppColors.PrimaryColor,
+                                  child: Icon(Icons.check),
+                              ),
+                                )
+
+                            ],
+                          ),
+                        ),
+                        const SizedBox(height: 16,),
+                        Text("Size",style: TextStyle(
+                            color: Colors.black54,
+                            fontWeight: FontWeight.w500,
+                            fontSize: 16
+                        )
+                          ,),
+                        const SizedBox(height: 8,),
+                        SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: Row(
+                            children: [
+                              for( int i=0;i<5;i++)
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Container(
+                                    padding: EdgeInsets.all(8),
+                                    decoration: BoxDecoration(
+                                      border: Border.all(color: Colors.black54,width: 2),
+                                      borderRadius: BorderRadius.circular(50)
+                                    ),
+                                    child: Text("XL"),
+                                  ),
+                                )
+
+                            ],
+                          ),
+                        ),
+                        Text("Description",style: TextStyle(
+                            color: Colors.black54,
+                            fontWeight: FontWeight.w500,
+                            fontSize: 16
+                        )
+                          ,),
+                        const SizedBox(height: 8,),
+                        Text('''The world's largest athletic apparel company, Nike is best known for its footwear, apparel, and equipment. Founded in 1964 as Blue Ribbon Sports, the company became Nike in 1971 after the Greek goddess of victory.
+                        ''',style: TextStyle(
+                          fontSize: 13,
+                          letterSpacing: 0.2,
+                          color: Colors.black54),
+                        ),
+                        
+                      ],
+                    ),
+                  )
+
+                ],
+              ),
+            ),
+          ),
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: 16,vertical: 10),
+            decoration: BoxDecoration(
+                color: AppColors.PrimaryColor.withOpacity(0.20),
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(16),
+                  topRight: Radius.circular(16),
+
                 )
-                  ,),
-                const SizedBox(height: 8,),
-                Text(''' 
-                The world's largest athletic apparel company, Nike is best known for its footwear, apparel, and equipment. Founded in 1964 as Blue Ribbon Sports, the company became Nike in 1971 after the Greek goddess of victory.
-                ''')
-                
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text("Total price",style:TextStyle(
+                        color: Colors.black54,
+                        fontSize: 12
+                    ) ,
+                    ),
+                    Text("\$12000",style:TextStyle(
+                        color: AppColors.PrimaryColor,
+                        fontSize: 15,
+                        fontWeight: FontWeight.w600
+                    ) ,
+                    ),
+
+
+                  ],
+                ),
+
+                SizedBox(
+                  width: 120,
+                  child: AppElevatedButton(text: "Add to cart", ontap: (){}),
+
+                ),
+
               ],
             ),
           )
-
         ],
       ),
 
