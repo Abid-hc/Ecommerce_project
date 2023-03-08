@@ -3,6 +3,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
+import 'main_bottom_navigation_bar.dart';
+
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
 
@@ -11,6 +13,18 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+
+  @override
+  void initState() {
+    super.initState();
+    Future.delayed(Duration(seconds: 2)).then((value) {
+      Navigator.pushAndRemoveUntil(context, MaterialPageRoute(
+          builder: (context)=> MainBottomNavigationBar()),
+              (route) => false);
+    },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

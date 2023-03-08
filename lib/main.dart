@@ -1,4 +1,3 @@
-import 'package:ecommerce_project/screens/emailauthScreen.dart';
 import 'package:ecommerce_project/screens/splashscreen.dart';
 import 'package:flutter/material.dart';
 
@@ -18,7 +17,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: EmailAuthScreen(),
+      home: SplashScreen(),
     );
   }
 }
