@@ -1,3 +1,4 @@
+import 'package:ecommerce_project/screens/review_screen.dart';
 import 'package:ecommerce_project/utilitys/widgets/inc_dce_from_filed.dart';
 import 'package:flutter/material.dart';
 import '../utilitys/Appcolors.dart';
@@ -61,7 +62,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                             Text("4.5"),
                             const SizedBox(width: 8,),
                             TextButton(onPressed: (){
-                              Navigator.push(context, MaterialPageRoute(builder: (context)=>CreateReviewScreen()));
+                              Navigator.push(context, MaterialPageRoute(builder: (context)=>ReviewScreen()));
                             }, child: Text("Reviews",style: TextStyle(
                               color:  AppColors.PrimaryColor
                             ),)),
