@@ -1,13 +1,15 @@
 import 'package:carousel_slider/carousel_controller.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:ecommerce_project/data/model/product_slider_model.dart';
 import 'package:flutter/material.dart';
 
 import '../../Appcolors.dart';
 class HomeBannerSlider extends StatelessWidget {
-  HomeBannerSlider({Key? key}) : super(key: key);
+  HomeBannerSlider({Key? key, required this.productSliderModel}) : super(key: key);
 
   final ValueNotifier <int> CurrentSelectedIndex=ValueNotifier(0) ;
   final CarouselController _carouselController= CarouselController();
+  final ProductSliderModel productSliderModel;
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +27,7 @@ class HomeBannerSlider extends StatelessWidget {
 
               }
           ),
-          items: [1,2,3,4,5].map((i) {
+          items:productSliderModel.data?.map((slider) {
             return Builder(
               builder: (BuildContext context) {
                 return Container(
@@ -34,10 +36,12 @@ class HomeBannerSlider extends StatelessWidget {
                     margin: EdgeInsets.symmetric(horizontal: 1),
                     decoration: BoxDecoration(
                         color: Colors.amber,
-                        borderRadius: BorderRadius.circular(8)
+                        borderRadius: BorderRadius.circular(8),
+                      image: DecorationImage(
+                        image: NetworkImage(slider.image??'')
+                      )
                     ),
 
-                    child: Text('text $i', style: const TextStyle(fontSize: 16.0),)
                 );
               },
             );
@@ -48,7 +52,7 @@ class HomeBannerSlider extends StatelessWidget {
           return Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              for(int i=0; i<5;i++)
+              for(int i=0; i<(productSliderModel.data?.length?? 0);i++)
 
 
                 Container(

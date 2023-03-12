@@ -1,6 +1,8 @@
+import 'package:ecommerce_project/getx/home_controler.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import '../utilitys/Appcolors.dart';
 import '../utilitys/widgets/Home/catagory_iteam_widget.dart';
 import '../utilitys/widgets/Home/home_banner_slider.dart';
@@ -15,6 +17,13 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  HomeController homeController = Get.put(HomeController());
+
+  @override
+  void initState() {
+    super.initState();
+    homeController.getProductSliderList();
+  }
 
 
   @override
@@ -74,7 +83,20 @@ class _HomeScreenState extends State<HomeScreen> {
                 )
               ),
              const SizedBox(height: 16,),
-             HomeBannerSlider(),
+
+             GetBuilder<HomeController>(
+               builder: (homecontroller) {
+                 if(homeController.getProductSliderInprogress){
+                   return CircularProgressIndicator();
+                 }
+                 else{
+                   return HomeBannerSlider(
+                     productSliderModel: homeController.productSliderModel,
+                   );
+                 }
+
+               }
+             ),
 
               SectionHeader(
                 HeaderName: "Catagories",
