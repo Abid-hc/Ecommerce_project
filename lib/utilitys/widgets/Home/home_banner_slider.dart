@@ -35,7 +35,7 @@ class HomeBannerSlider extends StatelessWidget {
                     width: MediaQuery.of(context).size.width,
                     margin: EdgeInsets.symmetric(horizontal: 1),
                     decoration: BoxDecoration(
-                        color: Colors.amber,
+                        color: AppColors.PrimaryColor.withOpacity(0.1),
                         borderRadius: BorderRadius.circular(8),
                       image: DecorationImage(
                         image: NetworkImage(slider.image??'')
