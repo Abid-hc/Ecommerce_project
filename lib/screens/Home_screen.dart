@@ -1,3 +1,4 @@
+import 'package:ecommerce_project/getx/catagory_controller.dart';
 import 'package:ecommerce_project/getx/home_controler.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -18,11 +19,13 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   HomeController homeController = Get.put(HomeController());
+  CatagoryController catagoryController= Get.put(CatagoryController());
 
   @override
   void initState() {
     super.initState();
     homeController.getProductSliderList();
+    catagoryController.getCatagories();
   }
 
 
@@ -102,37 +105,62 @@ class _HomeScreenState extends State<HomeScreen> {
                 HeaderName: "Catagories",
                 onTapSeeAll: (){},
               ),
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: [
-                    CatagoryIteamWidget(
-                      CatagoryIteamName: "Electronics",
-                      onTap: (){},
-                      icon: Icons.computer,
+              GetBuilder<CatagoryController>(
+                builder: (controller) {
+                  if (controller.getCatagoryInProgress){
+                  return Center(
+                    child: CircularProgressIndicator(),
+                  );}
+                  else{
+                    return SizedBox(
+                      height: 200,
+                      child: ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        itemCount: controller.catagoryModel.data?.length??0 ,
+                        itemBuilder: (context,index){
+                          return CatagoryIteamWidget(
+                            CatagoryIteamName: "Electronics",
+                            onTap: (){},
+                            icon: Icons.computer,
+                          );
+
+                        }
+                      ),
+                    );
+                  return SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      children: [
+                        CatagoryIteamWidget(
+                          CatagoryIteamName: "Electronics",
+                          onTap: (){},
+                          icon: Icons.computer,
+                        ),
+                        CatagoryIteamWidget(
+                          CatagoryIteamName: "Food",
+                          onTap: (){},
+                          icon: Icons.fastfood,
+                        ),
+                        CatagoryIteamWidget(
+                          CatagoryIteamName: "Fashion",
+                          onTap: (){},
+                          icon: Icons.diamond,
+                        ),
+                        CatagoryIteamWidget(
+                          CatagoryIteamName: "Furniture",
+                          onTap: (){},
+                          icon: Icons.bed,
+                        ),
+                        CatagoryIteamWidget(
+                          CatagoryIteamName: "Bike",
+                          onTap: (){},
+                          icon: Icons.pedal_bike,
+                        ),
+                      ],
                     ),
-                    CatagoryIteamWidget(
-                      CatagoryIteamName: "Food",
-                      onTap: (){},
-                      icon: Icons.fastfood,
-                    ),
-                    CatagoryIteamWidget(
-                      CatagoryIteamName: "Fashion",
-                      onTap: (){},
-                      icon: Icons.diamond,
-                    ),
-                    CatagoryIteamWidget(
-                      CatagoryIteamName: "Furniture",
-                      onTap: (){},
-                      icon: Icons.bed,
-                    ),
-                    CatagoryIteamWidget(
-                      CatagoryIteamName: "Bike",
-                      onTap: (){},
-                      icon: Icons.pedal_bike,
-                    ),
-                  ],
-                ),
+                  );
+                  }
+                }
               ),
 
 
