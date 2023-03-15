@@ -113,13 +113,13 @@ class _HomeScreenState extends State<HomeScreen> {
                   );}
                   else{
                     return SizedBox(
-                      height: 200,
+                      height: 100,
                       child: ListView.builder(
                         scrollDirection: Axis.horizontal,
                         itemCount: controller.catagoryModel.data?.length??0 ,
                         itemBuilder: (context,index){
                           return CatagoryIteamWidget(
-                            CatagoryIteamName: "Electronics",
+                            CatagoryIteamName: controller.catagoryModel.data![index]?.categoryName??"",
                             onTap: (){},
                             icon: Icons.computer,
                           );
