@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import '../utilitys/Appcolors.dart';
+
 import '../utilitys/widgets/Home/catagory_iteam_widget.dart';
 import '../utilitys/widgets/Home/home_banner_slider.dart';
 import '../utilitys/widgets/Home/product_item_preview_card.dart';
@@ -18,16 +18,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  HomeController homeController = Get.put(HomeController());
-  CatagoryController catagoryController= Get.put(CatagoryController());
-
-  @override
-  void initState() {
-    super.initState();
-    homeController.getProductSliderList();
-    catagoryController.getCatagories();
-  }
-
 
   @override
   Widget build(BuildContext context) {
@@ -88,13 +78,13 @@ class _HomeScreenState extends State<HomeScreen> {
              const SizedBox(height: 16,),
 
              GetBuilder<HomeController>(
-               builder: (homecontroller) {
-                 if(homeController.getProductSliderInprogress){
+               builder: (controller) {
+                 if(controller.getProductSliderInprogress){
                    return CircularProgressIndicator();
                  }
                  else{
                    return HomeBannerSlider(
-                     productSliderModel: homeController.productSliderModel,
+                     productSliderModel: controller.productSliderModel,
                    );
                  }
 
@@ -121,44 +111,13 @@ class _HomeScreenState extends State<HomeScreen> {
                           return CatagoryIteamWidget(
                             CatagoryIteamName: controller.catagoryModel.data![index]?.categoryName??"",
                             onTap: (){},
-                            icon: Icons.computer,
+                            image:controller.catagoryModel.data![index]?.categoryImg??"" ,
                           );
 
                         }
                       ),
                     );
-                  return SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: Row(
-                      children: [
-                        CatagoryIteamWidget(
-                          CatagoryIteamName: "Electronics",
-                          onTap: (){},
-                          icon: Icons.computer,
-                        ),
-                        CatagoryIteamWidget(
-                          CatagoryIteamName: "Food",
-                          onTap: (){},
-                          icon: Icons.fastfood,
-                        ),
-                        CatagoryIteamWidget(
-                          CatagoryIteamName: "Fashion",
-                          onTap: (){},
-                          icon: Icons.diamond,
-                        ),
-                        CatagoryIteamWidget(
-                          CatagoryIteamName: "Furniture",
-                          onTap: (){},
-                          icon: Icons.bed,
-                        ),
-                        CatagoryIteamWidget(
-                          CatagoryIteamName: "Bike",
-                          onTap: (){},
-                          icon: Icons.pedal_bike,
-                        ),
-                      ],
-                    ),
-                  );
+
                   }
                 }
               ),

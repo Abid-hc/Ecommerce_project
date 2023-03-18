@@ -4,10 +4,10 @@ import '../../Appcolors.dart';
 
 class CatagoryIteamWidget extends StatelessWidget {
   const CatagoryIteamWidget({
-    super.key, required this.CatagoryIteamName, required this.icon, required this.onTap,
+    super.key, required this.CatagoryIteamName, required this.image, required this.onTap,
   });
   final String CatagoryIteamName;
-  final IconData icon;
+  final String image;
   final VoidCallback onTap;
 
   @override
@@ -22,15 +22,11 @@ class CatagoryIteamWidget extends StatelessWidget {
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(8),
-                  color: AppColors.PrimaryColor.withOpacity(0.15)
 
               ),
-              child: Icon(
-                icon,
-                size:32,
-                color: AppColors.PrimaryColor,),
+              child: Image.network(image,height: 35,width: 38,)
             ),
-            const SizedBox(height: 6,),
+
             Text(CatagoryIteamName,style: TextStyle(
               color: AppColors.PrimaryColor,
               fontWeight: FontWeight.w500,

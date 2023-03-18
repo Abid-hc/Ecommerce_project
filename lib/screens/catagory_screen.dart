@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../getx/bottom_navigation_controler.dart';
+import '../getx/catagory_controller.dart';
 
 class ProductCatagoryScreen extends StatefulWidget {
   const ProductCatagoryScreen({Key? key}) : super(key: key);
@@ -30,14 +31,32 @@ class _ProductCatagoryScreenState extends State<ProductCatagoryScreen> {
           icon:Icon(Icons.arrow_back_ios,color: Colors.black54,) ,
         ),
       ),
-      body: GridView.builder(
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 4),
-          itemCount: 10,
-          itemBuilder: (context,index){
-            return CatagoryIteamWidget(CatagoryIteamName: "Food", icon: Icons.fastfood, onTap: (){},
-            );
-          },
-          ),
+      body: GetBuilder<CatagoryController>(
+          builder: (controller) {
+            if(controller.getCatagoryInProgress){
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+
+          return RefreshIndicator(
+            onRefresh: ()async{
+              controller.getCatagories();
+            },
+            child: GridView.builder(
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 4),
+                itemCount: controller.catagoryModel.data?.length??0,
+                itemBuilder: (context,index){
+                  return CatagoryIteamWidget(
+                    CatagoryIteamName: controller.catagoryModel.data![index].categoryName??"",
+                    image: controller.catagoryModel.data![index].categoryImg??"",
+                    onTap: (){},
+                  );
+                },
+                ),
+          );
+        }
+      ),
     );
   }
 }

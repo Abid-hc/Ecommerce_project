@@ -5,6 +5,8 @@ import 'package:ecommerce_project/utilitys/Appcolors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../getx/catagory_controller.dart';
+import '../getx/home_controler.dart';
 import 'Home_screen.dart';
 import 'carts_screen.dart';
 
@@ -18,13 +20,23 @@ class MainBottomNavigationBar extends StatefulWidget {
 
 class _MainBottomNavigationBarState extends State<MainBottomNavigationBar> {
   BottomNavitaionControler controler = Get.put(BottomNavitaionControler());
-
+  HomeController homeController = Get.put(HomeController());
+  CatagoryController catagoryController= Get.put(CatagoryController());
   final List<Widget> screen= const [
           HomeScreen(),
           ProductCatagoryScreen(),
           CartsScreen(),
           WishListScreen(),
   ];
+
+
+
+  @override
+  void initState() {
+    super.initState();
+    homeController.getProductSliderList();
+    catagoryController.getCatagories();
+  }
 
   @override
   Widget build(BuildContext context) {
