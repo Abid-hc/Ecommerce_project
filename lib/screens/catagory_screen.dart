@@ -1,7 +1,6 @@
 import 'package:ecommerce_project/utilitys/widgets/Home/catagory_iteam_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../getx/bottom_navigation_controler.dart';
 import '../getx/catagory_controller.dart';
 

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../../Appcolors.dart';
 
 class SectionHeader extends StatelessWidget {

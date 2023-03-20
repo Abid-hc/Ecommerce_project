@@ -6,6 +6,8 @@ import 'package:get/get.dart';
 class CatagoryController extends GetxController{
   CatagoryModel catagoryModel=CatagoryModel();
   bool getCatagoryInProgress=false;
+
+
   Future<bool> getCatagories()async{
     getCatagoryInProgress=true;
     update();

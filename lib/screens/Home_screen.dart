@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-
+import '../getx/bottom_navigation_controler.dart';
 import '../utilitys/widgets/Home/catagory_iteam_widget.dart';
 import '../utilitys/widgets/Home/home_banner_slider.dart';
 import '../utilitys/widgets/Home/product_item_preview_card.dart';
@@ -18,6 +18,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  BottomNavitaionControler bottomNavitaionControler = Get.put(BottomNavitaionControler());
 
   @override
   Widget build(BuildContext context) {
@@ -93,7 +94,9 @@ class _HomeScreenState extends State<HomeScreen> {
 
               SectionHeader(
                 HeaderName: "Catagories",
-                onTapSeeAll: (){},
+                onTapSeeAll: (){
+                  bottomNavitaionControler.changeIndex(1);
+                },
               ),
               GetBuilder<CatagoryController>(
                 builder: (controller) {
